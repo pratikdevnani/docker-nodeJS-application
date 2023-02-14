@@ -34,16 +34,13 @@ let databaseName = "my-db";
 
 app.post('/update-profile', function (req, res) {
   let userObj = req.body;
-
-  MongoClient.connect(mongoUrlLocal, mongoClientOptions, function (err, client) {
+  MongoClient.connect(mongoUrlDocker, mongoClientOptions, function (err, client) {
     if (err) throw err;
-
     let db = client.db(databaseName);
     userObj['userid'] = 1;
 
     let myquery = { userid: 1 };
     let newvalues = { $set: userObj };
-
     db.collection("users").updateOne(myquery, newvalues, {upsert: true}, function(err, res) {
       if (err) throw err;
       client.close();
