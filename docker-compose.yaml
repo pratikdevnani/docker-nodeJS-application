@@ -1,9 +1,10 @@
 version: '3'
 services:
-  # my-app:
-  # image: ${docker-registry}/my-app:1.0
-  # ports:
-  # - 3000:3000
+  node-docker:
+  # public.ecr.aws/w5r7b7n2/node-docker:1.0 - when pulling the information from ECR registry
+    image: node-docker:1.1
+    ports:
+    - 3000:3000
   mongodb:
     image: mongo
     ports:
